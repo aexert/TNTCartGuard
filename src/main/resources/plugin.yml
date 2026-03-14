@@ -1,0 +1,10 @@
+name: TNTCartGuard
+version: '1.0'
+main: gg.aexert.tNTCartGuard.TNTCartGuard
+api-version: '1.21'
+prefix: [ CartGuard ]
+authors: [ Aexert ]
+description: PvPManager addon by aexert
+website: https://github.com/aexert
+depend:
+  - PvPManager
