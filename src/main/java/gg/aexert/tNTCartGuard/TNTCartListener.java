@@ -43,7 +43,7 @@ public class TNTCartListener implements Listener {
             if (nearby.getWorld() != placer.getWorld()) continue;
 
             // Only check players within a relevant radius (e.g. 16 blocks)
-            if (nearby.getLocation().distance(placer.getLocation()) > 16) continue;
+            if (nearby.getLocation().distance(placer.getLocation()) > 8) continue;
 
             CombatPlayer nearbyPlayer = CombatPlayer.get(nearby);
             if (nearbyPlayer != null && !nearbyPlayer.hasPvPEnabled()) {
