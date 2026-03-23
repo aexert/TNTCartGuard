@@ -18,7 +18,7 @@ public class TNTCartListener implements Listener {
 
     private final TNTCartGuard plugin;
     private final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_MS = 500; // 500ms = half a second
+    private static final long COOLDOWN_MS = 1000; // 1000ms = a second
 
     public TNTCartListener(TNTCartGuard plugin) {
         this.plugin = plugin;
@@ -30,6 +30,7 @@ public class TNTCartListener implements Listener {
         ItemStack item = event.getItem();
 
         if (item == null || item.getType() != Material.TNT_MINECART) return;
+        if (placer.getWorld().getEnvironment() != org.bukkit.World.Environment.NORMAL) return;
 
         // Cooldown check — skip heavy logic if fired too recently
         long now = System.currentTimeMillis();
@@ -53,7 +54,7 @@ public class TNTCartListener implements Listener {
         for (Player nearby : onlinePlayers) {
             if (nearby.equals(placer)) continue;
             if (nearby.getWorld() != placer.getWorld()) continue;
-            if (nearby.getLocation().distance(placer.getLocation()) > 24) continue;
+            if (nearby.getLocation().distance(placer.getLocation()) > 8) continue;
 
             CombatPlayer nearbyPlayer = CombatPlayer.get(nearby);
             if (nearbyPlayer != null && !nearbyPlayer.hasPvPEnabled()) {
